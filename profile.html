@@ -1,0 +1,114 @@
+﻿<!DOCTYPE html><html lang="ru"><head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Профиль — Jumush Tap</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="css/style.css"/>
+<script src="https://unpkg.com/@phosphor-icons/web"></script>
+<style>
+.profile-page{background:#F4F6F8;min-height:100vh;padding-top:72px;padding-bottom:100px}
+.profile-header{background:linear-gradient(135deg,#F48227,#F35029);color:white;padding:40px 0 60px;text-align:center;position:relative}
+.profile-avatar{width:100px;height:100px;background:white;border-radius:50%;margin:0 auto 16px;display:flex;align-items:center;justify-content:center;font-size:2.5rem;font-weight:800;color:#F48227;border:4px solid rgba(255,255,255,0.3);box-shadow:0 8px 24px rgba(0,0,0,0.15)}
+.profile-name{font-size:1.6rem;font-weight:800;margin-bottom:4px}
+.profile-role{font-size:0.95rem;color:rgba(255,255,255,0.8)}
+.profile-card{background:white;border-radius:24px;padding:32px;margin:-40px auto 24px;max-width:800px;position:relative;z-index:10;box-shadow:0 4px 20px rgba(0,0,0,0.06)}
+.profile-section{margin-bottom:32px}
+.profile-section:last-child{margin-bottom:0}
+.section-title{font-size:1.1rem;font-weight:700;color:#1A1A2E;margin-bottom:16px;border-bottom:1px solid #E5E7EB;padding-bottom:12px;display:flex;align-items:center;gap:8px}
+.info-row{display:flex;justify-content:space-between;padding:12px 0;border-bottom:1px solid #f0f0f0}
+.info-row:last-child{border-bottom:none}
+.info-label{color:#6B7280;font-size:0.9rem}
+.info-value{color:#1A1A2E;font-weight:600;font-size:0.95rem}
+.skills-list{display:flex;flex-wrap:wrap;gap:8px}
+.empty-state-small{text-align:center;padding:24px;color:#9CA3AF;font-size:0.9rem;background:#F4F6F8;border-radius:12px}
+@media(max-width:768px){.profile-card{margin-left:16px;margin-right:16px;padding:24px}}
+</style>
+</head><body class="has-bottom-nav">
+<header class="navbar scrolled">
+ <div class="container navbar__inner">
+  <a href="index.html" class="navbar__logo">
+   <img src="images/logo.png" alt="Jumush Tap" class="custom-logo" />
+  </a>
+  <nav class="navbar__links">
+   <a href="jobs.html" class="nav-link">Вакансии</a>
+   <button onclick="JT.auth.logout()" class="btn btn--ghost btn--sm">Выйти</button>
+  </nav>
+ </div>
+</header>
+
+<div class="profile-page">
+ <div class="profile-header">
+  <div class="container">
+   <div class="profile-avatar" id="profAvatar">?</div>
+   <div class="profile-name" id="profName">Имя</div>
+   <div class="profile-role" id="profRole">Соискатель</div>
+  </div>
+ </div>
+
+ <div class="container">
+  <div class="profile-card">
+   <div class="profile-section">
+    <h3 class="section-title"><i class="ph ph-user"></i> Личные данные</h3>
+    <div class="info-row"><span class="info-label">Email</span><span class="info-value" id="profEmail">-</span></div>
+    <div class="info-row"><span class="info-label">Город</span><span class="info-value" id="profCity">-</span></div>
+   </div>
+   
+   <div class="profile-section">
+    <h3 class="section-title"><i class="ph-fill ph-star" style="color: #F48227;"></i> Навыки</h3>
+    <div class="skills-list" id="profSkills"><div class="empty-state-small" style="width:100%">Нет добавленных навыков</div></div>
+   </div>
+
+   <div class="profile-section" id="myAppsSection">
+    <h3 class="section-title"><i class="ph ph-rocket"></i> Мои отклики</h3>
+    <div id="profApps"><div class="empty-state-small" style="width:100%">Вы еще не откликались на вакансии</div></div>
+   </div>
+   
+   <div style="text-align:center;margin-top:40px">
+     <button onclick="JT.auth.logout()" class="btn btn--outline" style="color:#F35029;border-color:#F35029">Выйти из аккаунта</button>
+   </div>
+  </div>
+ </div>
+</div>
+
+<nav class="bottom-nav">
+ <div class="bottom-nav__inner">
+  <a href="jobs.html" class="bottom-nav-item"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg><span>Вакансии</span></a>
+  <a href="jobs.html?saved=1" class="bottom-nav-item"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg><span>Избранное</span></a>
+  <a href="profile.html" class="bottom-nav-item active"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg><span>Профиль</span></a>
+ </div>
+</nav>
+
+<script src="js/app.js"></script>
+<script>
+if(!JT.auth.requireAuth()) window.location.href='login.html';
+const user = JT.auth.getUser();
+if(user){
+  document.getElementById('profName').innerHTML = user.name;
+  document.getElementById('profAvatar').innerHTML = user.name.charAt(0).toUpperCase();
+  document.getElementById('profRole').innerHTML = user.role === 'employer' ? 'Работодатель' : 'Соискатель';
+  document.getElementById('profEmail').innerHTML = user.email;
+  document.getElementById('profCity').innerHTML = user.city || 'Не указан';
+  
+  if(user.skills && user.skills.length > 0){
+    document.getElementById('profSkills').innerHTML = user.skills.map(s => '<span class="tag tag--secondary">'+s+'</span>').join('');
+  }
+  
+  if(user.role === 'employer'){
+    document.getElementById('myAppsSection').style.display = 'none';
+  } else {
+    const apps = JT.apps.getAll();
+    if(apps.length > 0){
+      let html = '';
+      apps.forEach(a => {
+        const job = JT.jobs.getById(a.jobId);
+        if(job){
+          html += '<div style="display:flex;align-items:center;gap:12px;padding:12px;border:1px solid #E5E7EB;border-radius:12px;margin-bottom:10px;background:#F9FAFB"><div style="font-size:1.8rem">'+job.logo+'</div><div style="flex:1"><div style="font-weight:700;font-size:0.9rem">'+job.title+'</div><div style="font-size:0.8rem;color:#6B7280">'+job.company+'</div></div><span class="tag tag--green" style="font-size:0.7rem">Отправлено</span></div>';
+        }
+      });
+      document.getElementById('profApps').innerHTML = html;
+    }
+  }
+}
+</script>
+</body></html>
+
+

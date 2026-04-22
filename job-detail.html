@@ -1,0 +1,176 @@
+﻿<!DOCTYPE html><html lang="ru"><head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Вакансия — Jumush Tap</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="css/style.css"/>
+<script src="https://unpkg.com/@phosphor-icons/web"></script>
+<style>
+.detail-page{background:#F4F6F8;min-height:100vh;padding-top:72px}
+.detail-back{display:inline-flex;align-items:center;gap:8px;color:#6B7280;font-weight:600;font-size:0.9rem;text-decoration:none;padding:20px 0;transition:color 0.2s}
+.detail-back:hover{color:#F48227}
+.detail-grid{display:grid;grid-template-columns:1fr 360px;gap:24px;padding-bottom:100px}
+.detail-main{background:white;border-radius:24px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,0.06)}
+.detail-hero{background:linear-gradient(135deg,#1A1A2E,#16213E);padding:36px;color:white;position:relative;overflow:hidden}
+.detail-hero::before{content:'';position:absolute;top:-30px;right:-30px;width:180px;height:180px;border-radius:50%;background:rgba(255,255,255,0.04)}
+.detail-logo{width:72px;height:72px;border-radius:18px;display:flex;align-items:center;justify-content:center;font-size:2rem;margin-bottom:20px;position:relative;z-index:1}
+.detail-title{font-size:1.6rem;font-weight:800;color:white;margin-bottom:8px;position:relative;z-index:1}
+.detail-company{color:rgba(255,255,255,0.7);font-size:1rem;margin-bottom:20px;position:relative;z-index:1}
+.detail-badges{display:flex;gap:10px;flex-wrap:wrap;position:relative;z-index:1}
+.detail-badge{background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.2);color:white;padding:6px 14px;border-radius:20px;font-size:0.8rem;font-weight:600;display:flex;align-items:center;gap:6px;}
+.detail-badge.orange{background:rgba(244,130,39,0.3);border-color:rgba(244,130,39,0.5)}
+.detail-badge.red{background:rgba(243,80,41,0.3);border-color:rgba(243,80,41,0.5)}
+.detail-body{padding:32px}
+.detail-section{margin-bottom:28px}
+.detail-section h3{font-size:1rem;font-weight:700;color:#1A1A2E;margin-bottom:14px;display:flex;align-items:center;gap:8px}
+.detail-desc{color:#6B7280;line-height:1.8;font-size:0.95rem}
+.req-list{list-style:none;display:flex;flex-direction:column;gap:10px}
+.req-list li{display:flex;align-items:center;gap:10px;font-size:0.9rem;color:#1A1A2E}
+.req-list li::before{content:'\e95e';font-family:'Phosphor';color:#29858D;font-weight:700;flex-shrink:0}
+.info-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.info-item{background:#F4F6F8;border-radius:14px;padding:16px}
+.info-item__label{font-size:0.74rem;font-weight:700;color:#9CA3AF;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:6px}
+.info-item__value{font-size:1rem;font-weight:700;color:#1A1A2E}
+.detail-sidebar{display:flex;flex-direction:column;gap:16px}
+.sidebar-card{background:white;border-radius:20px;padding:24px;box-shadow:0 2px 8px rgba(0,0,0,0.06)}
+.salary-big{font-size:2.4rem;font-weight:800;color:#F48227;line-height:1}
+.salary-unit{font-size:0.9rem;color:#9CA3AF;font-weight:400;margin-top:4px}
+.apply-btn{width:100%;margin-top:20px}
+.save-detail-btn{width:100%;margin-top:10px}
+.company-card{display:flex;align-items:center;gap:14px}
+.company-logo{width:52px;height:52px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:1.4rem}
+.company-name{font-weight:700;color:#1A1A2E;margin-bottom:2px}
+.company-rating{font-size:0.82rem;color:#6B7280;display:flex;align-items:center;gap:4px;}
+.sticky-apply{display:none;position:fixed;bottom:72px;left:0;right:0;padding:16px 20px;background:white;border-top:1px solid #E5E7EB;box-shadow:0 -4px 20px rgba(0,0,0,0.08);z-index:500}
+.sticky-apply-inner{display:flex;gap:10px;align-items:center;max-width:600px;margin:0 auto}
+.sticky-salary{font-size:1.3rem;font-weight:800;color:#F48227}
+@media(max-width:768px){.detail-grid{grid-template-columns:1fr}.detail-sidebar{display:none}.sticky-apply{display:block}}
+</style>
+</head><body class="has-bottom-nav">
+<header class="navbar scrolled">
+ <div class="container navbar__inner">
+  <a href="jobs.html" class="navbar__logo" style="gap:6px">
+   <i class="ph ph-caret-left" style="font-size:24px; color:#6B7280;"></i>
+   <span style="font-size:0.9rem;font-weight:600;color:#6B7280">Вакансии</span>
+  </a>
+  <div class="navbar__logo">
+   <img src="images/logo.png" alt="Jumush Tap" class="custom-logo" />
+  </div>
+  <div style="width:80px"></div>
+ </div>
+</header>
+
+<div class="detail-page">
+ <div class="container">
+  <div class="detail-grid" id="detailGrid">
+   <div class="empty-state"><span class="empty-state__icon"><i class="ph ph-hourglass"></i></span><div class="empty-state__title">Загрузка...</div></div>
+  </div>
+ </div>
+</div>
+
+<div class="sticky-apply" id="stickyApply" style="display:none">
+ <div class="sticky-apply-inner">
+  <div><div class="sticky-salary" id="stickySalary">0 с/ч</div><div style="font-size:0.76rem;color:#9CA3AF">за час работы</div></div>
+  <button class="btn btn--primary btn--full" id="stickyBtn" onclick="applyJob()"><i class="ph ph-rocket" style="vertical-align:middle;"></i> Откликнуться</button>
+  <button class="btn btn--icon btn--outline" id="stickySave" onclick="toggleSave()"><i class="ph ph-heart" style="font-size:20px;"></i></button>
+ </div>
+</div>
+
+<nav class="bottom-nav">
+ <div class="bottom-nav__inner">
+  <a href="jobs.html" class="bottom-nav-item active"><i class="ph ph-briefcase" style="font-size:24px;"></i><span>Вакансии</span></a>
+  <a href="profile.html" class="bottom-nav-item"><i class="ph ph-user" style="font-size:24px;"></i><span>Профиль</span></a>
+ </div>
+</nav>
+
+<script src="js/app.js"></script>
+<script>
+if(!JT.auth.requireAuth()) window.location.href='login.html';
+const params=new URLSearchParams(location.search);
+const jobId=parseInt(params.get('id'));
+const job=JT.jobs.getById(jobId);
+
+if(!job){
+  document.getElementById('detailGrid').innerHTML='<div class="empty-state"><span class="empty-state__icon"><i class="ph ph-smiley-sad"></i></span><div class="empty-state__title">Вакансия не найдена</div><a href="jobs.html" class="btn btn--primary" style="margin-top:16px">← К вакансиям</a></div>';
+}else{
+  document.title=job.title+' — Jumush Tap';
+  const typeLabel={parttime:'Частичная',oneday:'Разовая',regular:'Постоянная',weekend:'Выходные',evening:'Вечер',project:'Проект'}[job.type]||job.type;
+  const isSaved=JT.saved.isSaved(job.id);
+  const isApplied=JT.apps.isApplied(job.id);
+  document.getElementById('detailGrid').innerHTML=
+  '<div class="detail-main">'+
+    '<div class="detail-hero">'+
+      '<div class="detail-logo" style="background:'+job.color+'30">'+job.logo+'</div>'+
+      '<div class="detail-title">'+job.title+'</div>'+
+      '<div class="detail-company">'+job.company+' · '+job.city+'</div>'+
+      '<div class="detail-badges">'+
+        '<span class="detail-badge orange">'+job.salary.toLocaleString()+' с/ч</span>'+
+        '<span class="detail-badge"><i class="ph ph-clock"></i> '+job.hours+' ч</span>'+
+        (job.remote?'<span class="detail-badge"><i class="ph ph-laptop"></i> Удалённо</span>':'<span class="detail-badge"><i class="ph-fill ph-map-pin"></i> '+job.distance+'</span>')+
+        (job.urgent?'<span class="detail-badge red"><i class="ph-fill ph-fire"></i> Срочно</span>':'')+
+        '<span class="detail-badge">'+typeLabel+'</span>'+
+      '</div>'+
+    '</div>'+
+    '<div class="detail-body">'+
+      '<div class="detail-section"><h3><i class="ph ph-clipboard-text"></i> Описание</h3><p class="detail-desc">'+job.description+'</p></div>'+
+      '<div class="detail-section"><h3><i class="ph-fill ph-check-circle" style="color: #22c55e;"></i> Требования</h3><ul class="req-list">'+job.requirements.map(r=>'<li>'+r+'</li>').join('')+'</ul></div>'+
+      '<div class="detail-section"><h3><i class="ph-fill ph-info" style="color: #29858D;"></i> Детали работы</h3><div class="info-grid">'+
+        '<div class="info-item"><div class="info-item__label">Тип</div><div class="info-item__value">'+typeLabel+'</div></div>'+
+        '<div class="info-item"><div class="info-item__label">Длительность</div><div class="info-item__value">'+job.hours+' ч</div></div>'+
+        '<div class="info-item"><div class="info-item__label">Город</div><div class="info-item__value">'+job.city+'</div></div>'+
+        '<div class="info-item"><div class="info-item__label">Опубликовано</div><div class="info-item__value">'+job.postedAt+'</div></div>'+
+      '</div></div>'+
+    '</div>'+
+  '</div>'+
+  '<div class="detail-sidebar">'+
+    '<div class="sidebar-card">'+
+      '<div class="salary-big">'+job.salary.toLocaleString()+'</div><div class="salary-unit">сом в час</div>'+
+      '<button class="btn btn--primary btn--full apply-btn" id="applyBtn" onclick="applyJob()">'+
+        (isApplied?'<i class="ph ph-check" style="vertical-align:middle;font-weight:bold;"></i> Отклик отправлен':'<i class="ph ph-rocket" style="vertical-align:middle;"></i> Откликнуться')+'</button>'+
+      '<button class="btn btn--outline btn--full save-detail-btn" id="saveBtn" onclick="toggleSave()">'+
+        (isSaved?'<i class="ph-fill ph-heart" style="vertical-align:middle;color:#F35029;"></i> В избранном':'<i class="ph ph-heart" style="vertical-align:middle;"></i> Сохранить')+'</button>'+
+    '</div>'+
+    '<div class="sidebar-card">'+
+      '<div style="font-size:0.8rem;font-weight:700;color:#9CA3AF;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:14px">О работодателе</div>'+
+      '<div class="company-card">'+
+        '<div class="company-logo" style="background:'+job.color+'20">'+job.logo+'</div>'+
+        '<div><div class="company-name">'+job.company+'</div><div class="company-rating"><i class="ph-fill ph-star" style="color: #F48227;"></i> '+job.rating+' · '+job.reviews+' отзывов</div></div>'+
+      '</div>'+
+    '</div>'+
+  '</div>';
+
+  document.getElementById('stickySalary').innerHTML=job.salary.toLocaleString()+' с/ч';
+  document.getElementById('stickyApply').style.display='block';
+  if(isApplied){document.getElementById('stickyBtn').innerHTML='<i class="ph ph-check" style="vertical-align:middle;font-weight:bold;"></i> Отклик отправлен';document.getElementById('stickyBtn').disabled=true;}
+  updateSaveBtn();
+}
+
+function applyJob(){
+  if(!job)return;
+  const res=JT.apps.apply(job.id);
+  if(res.ok){
+    JT.toast('Отклик отправлен! <i class="ph ph-confetti"></i>','success');
+    const ab=document.getElementById('applyBtn');const sb=document.getElementById('stickyBtn');
+    if(ab){ab.innerHTML='<i class="ph ph-check" style="vertical-align:middle;font-weight:bold;"></i> Отклик отправлен';ab.disabled=true;}
+    if(sb){sb.innerHTML='<i class="ph ph-check" style="vertical-align:middle;font-weight:bold;"></i> Отклик отправлен';sb.disabled=true;}
+  }else JT.toast(res.msg,'info');
+}
+
+function toggleSave(){
+  if(!job)return;
+  const isSaved=JT.saved.toggle(job.id);
+  updateSaveBtn();
+  JT.toast(isSaved?'Добавлено в избранное <i class="ph-fill ph-heart"></i>':'Удалено из избранного',isSaved?'success':'info');
+}
+
+function updateSaveBtn(){
+  if(!job)return;
+  const isSaved=JT.saved.isSaved(job.id);
+  const saveBtn=document.getElementById('saveBtn');
+  const stickySave=document.getElementById('stickySave');
+  if(saveBtn)saveBtn.innerHTML=isSaved?'<i class="ph-fill ph-heart" style="vertical-align:middle;color:#F35029;"></i> В избранном':'<i class="ph ph-heart" style="vertical-align:middle;"></i> Сохранить';
+  if(stickySave)stickySave.innerHTML=isSaved?'<i class="ph-fill ph-heart" style="font-size:20px;color:#F35029;"></i>':'<i class="ph ph-heart" style="font-size:20px;"></i>';
+}
+</script>
+</body></html>
+
+

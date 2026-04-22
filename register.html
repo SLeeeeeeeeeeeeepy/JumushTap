@@ -1,0 +1,76 @@
+﻿<!DOCTYPE html><html lang="ru"><head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Регистрация — Jumush Tap</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="css/style.css"/><link rel="stylesheet" href="css/auth.css"/>
+<script src="https://unpkg.com/@phosphor-icons/web"></script>
+</head><body>
+<div class="auth-page">
+ <div class="auth-container">
+  <div class="auth-left">
+   <div class="auth-left__content"><h2>Начни зарабатывать сегодня! <i class="ph ph-rocket"></i></h2><p>Jumush Tap — твоя платформа краткосрочных подработок. Для студентов, мам, фрилансеров и всех занятых людей.</p><div class="auth-left__perks"><div class="perk"><i class="ph ph-graduation-cap"></i> Специально для студентов</div><div class="perk"><i class="ph ph-calendar-blank"></i> Гибкий график — сам выбираешь дни</div><div class="perk"><i class="ph ph-money"></i> Быстрая оплата после смены</div></div></div>
+  </div>
+  <div class="auth-right" style="position:relative;">
+      <a href="index.html" class="mobile-close-btn"><i class="ph ph-x"></i></a>
+   <div style="text-align:center;margin-bottom:24px;"><a href="index.html"><img src="images/logo.png" alt="Jumush Tap" class="custom-logo" style="height:52px;" /></a></div>
+   <div class="step-indicator"><div class="step-dot active" id="dot1"></div><div class="step-dot" id="dot2"></div></div>
+   <div id="step1">
+    <h1>Кто ты?</h1><p class="subtitle">Выбери свою роль для персонализации опыта</p>
+    <div class="role-selector">
+     <div class="role-card selected" id="roleSeeker" onclick="selectRole('seeker')"><div class="role-card__icon"><i class="ph ph-backpack"></i></div><div class="role-card__title">Ищу работу</div></div>
+     <div class="role-card" id="roleEmployer" onclick="selectRole('employer')"><div class="role-card__icon"><i class="ph ph-buildings"></i></div><div class="role-card__title">Работодатель</div></div>
+    </div>
+    <button class="btn btn--primary btn--full btn--lg" onclick="goStep2()">Продолжить →</button>
+   </div>
+   <div id="step2" style="display:none">
+    <h1>Создай аккаунт</h1><p class="subtitle" id="step2Sub">Заполни данные — займёт меньше минуты</p>
+    <form id="regForm" novalidate>
+     <div class="form-group"><label class="form-label">Имя и фамилия</label><div class="input-wrap"><span class="i-icon"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></span><input type="text" id="regName" class="form-input" placeholder="Азиз Карымов"/></div><div class="form-error" id="nameErr">Введите имя</div></div>
+     <div class="form-group"><label class="form-label">Email</label><div class="input-wrap"><span class="i-icon"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg></span><input type="email" id="regEmail" class="form-input" placeholder="your@email.com"/></div><div class="form-error" id="regEmailErr">Введите корректный email</div></div>
+     <div class="form-group"><label class="form-label">Город</label><div class="input-wrap"><span class="i-icon"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></span><select id="regCity" class="form-input" style="padding-left:44px"><option>Бишкек</option><option>Ош</option><option>Джалал-Абад</option><option>Каракол</option></select></div></div>
+     <div class="form-group"><label class="form-label">Пароль</label><div class="input-wrap" style="position:relative"><span class="i-icon"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></span><input type="password" id="regPassword" class="form-input" placeholder="Минимум 6 символов"/><button type="button" class="i-eye" onclick="toggleRegPw()"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg></button></div><div class="form-error" id="regPwErr">Минимум 6 символов</div></div>
+     <div style="margin-bottom:20px;display:flex;align-items:flex-start;gap:10px"><input type="checkbox" id="agree" style="margin-top:3px;accent-color:#F48227"/><label for="agree" style="font-size:0.84rem;color:#6B7280">Соглашаюсь с <a href="#" style="color:#F48227">условиями использования</a> и <a href="#" style="color:#F48227">политикой конфиденциальности</a></label></div>
+     <div class="form-error" id="agreeErr" style="margin-top:-12px;margin-bottom:12px">Необходимо согласие</div>
+     <button type="submit" class="btn btn--primary btn--full btn--lg" id="regBtn">Создать аккаунт</button>
+    </form>
+    <button onclick="goStep1()" style="background:none;border:none;color:#6B7280;font-family:Outfit,sans-serif;font-size:0.88rem;cursor:pointer;margin-top:12px;display:block;width:100%;text-align:center">← Назад</button>
+   </div>
+   <div class="auth-footer">Уже есть аккаунт? <a href="login.html">Войти</a></div>
+  </div>
+ </div>
+</div>
+<script src="js/app.js"></script>
+<script>
+  if (JT.auth.isLoggedIn()) window.location.href='jobs.html';
+  let selectedRole='seeker';
+  function selectRole(r){selectedRole=r;document.getElementById('roleSeeker').classList.toggle('selected',r==='seeker');document.getElementById('roleEmployer').classList.toggle('selected',r==='employer');}
+  function goStep2(){document.getElementById('step1').style.display='none';document.getElementById('step2').style.display='block';document.getElementById('dot1').classList.remove('active');document.getElementById('dot2').classList.add('active');document.getElementById('step2Sub').innerHTML=selectedRole==='seeker'?'Соискатель — укажи свои данные':'Работодатель — расскажи о компании';}
+  function goStep1(){document.getElementById('step2').style.display='none';document.getElementById('step1').style.display='block';document.getElementById('dot2').classList.remove('active');document.getElementById('dot1').classList.add('active');}
+  function toggleRegPw(){const i=document.getElementById('regPassword');i.type=i.type==='password'?'text':'password';}
+  document.getElementById('regForm').addEventListener('submit',function(e){
+    e.preventDefault();
+    const name=document.getElementById('regName').value.trim();
+    const email=document.getElementById('regEmail').value.trim();
+    const pw=document.getElementById('regPassword').value;
+    const city=document.getElementById('regCity').value;
+    const agreed=document.getElementById('agree').checked;
+    let ok=true;
+    document.getElementById('nameErr').classList.toggle('show',!name); if(!name)ok=false;
+    document.getElementById('regEmailErr').classList.toggle('show',!email||!email.includes('@')); if(!email||!email.includes('@'))ok=false;
+    document.getElementById('regPwErr').classList.toggle('show',pw.length<6); if(pw.length<6)ok=false;
+    document.getElementById('agreeErr').classList.toggle('show',!agreed); if(!agreed)ok=false;
+    if(!ok)return;
+    const btn=document.getElementById('regBtn'); btn.innerHTML='<span class="spinner"></span> Создаём...'; btn.disabled=true;
+    setTimeout(()=>{
+      const res=JT.auth.register({name,email,password:pw,role:selectedRole,city,skills:[]});
+      if(res.ok){JT.toast('Добро пожаловать, '+res.user.name+'! <i class="ph ph-confetti"></i>','success');setTimeout(()=>window.location.href='jobs.html',800);}
+      else{JT.toast(res.msg,'error');btn.innerHTML='Создать аккаунт';btn.disabled=false;}
+    },1000);
+  });
+</script>
+</body></html>
+
+
+
+
+

@@ -1,0 +1,110 @@
+﻿<!DOCTYPE html><html lang="ru"><head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Вакансии — Jumush Tap</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="css/style.css"/><link rel="stylesheet" href="css/jobs.css"/>
+<script src="https://unpkg.com/@phosphor-icons/web"></script>
+</head><body class="has-bottom-nav">
+<header class="navbar scrolled" id="navbar">
+ <div class="container navbar__inner">
+  <a href="index.html" class="navbar__logo"><img src="images/logo.png" alt="Jumush Tap" class="custom-logo" /></a>
+  <nav class="navbar__links" id="navLinks">
+   <a href="jobs.html" class="nav-link active">Вакансии</a>
+   <a href="profile.html" class="nav-link">Профиль</a>
+   <button onclick="JT.auth.logout()" class="btn btn--ghost btn--sm">Выйти</button>
+  </nav>
+  <button class="burger" id="burger"><span></span><span></span><span></span></button>
+ </div>
+</header>
+
+<div class="jobs-page">
+ <div class="jobs-topbar">
+  <div class="container jobs-topbar__inner">
+   <div class="search-wrap">
+    <i class="ph ph-magnifying-glass" style="font-size:18px; color: #6B7280;"></i>
+    <input type="text" id="searchInput" placeholder="Поиск вакансий, компаний..."/>
+   </div>
+   <button class="mobile-filter-btn" id="mobileFilterBtn"><i class="ph ph-faders" style="font-size:18px;"></i> Фильтры</button>
+   <select id="sortSelect" class="sort-select">
+    <option value="urgent">По срочности</option>
+    <option value="new">Новые</option>
+    <option value="salary_desc">Зарплата: высокая</option>
+    <option value="salary_asc">Зарплата: низкая</option>
+   </select>
+  </div>
+ </div>
+
+ <div class="container">
+  <div id="catsScroll" class="cats-scroll" style="margin-top:20px"></div>
+  <div class="jobs-main">
+   <aside class="filters-panel">
+    <h3>Фильтры <button class="filter-clear">Сбросить</button></h3>
+    <div class="filter-section">
+     <div class="filter-label">Тип занятости</div>
+     <div class="filter-chips">
+      <button class="filter-chip active" data-type="all">Все</button>
+      <button class="filter-chip" data-type="parttime">Частичная</button>
+      <button class="filter-chip" data-type="oneday">Разовая</button>
+      <button class="filter-chip" data-type="weekend">Выходные</button>
+      <button class="filter-chip" data-type="project">Проект</button>
+     </div>
+    </div>
+    <div class="filter-section">
+     <div class="filter-label">Мин. зарплата (с/ч)</div>
+     <div class="salary-range">
+      <div class="salary-inputs">
+       <input type="number" id="minSalary" placeholder="от 500" min="0"/>
+       <input type="number" id="maxSalary" placeholder="до 3000" min="0"/>
+      </div>
+     </div>
+    </div>
+    <div class="filter-section">
+     <div class="filter-label">Дополнительно</div>
+     <div class="toggle-row"><span class="toggle-label">Только удалённые</span><label class="toggle"><input type="checkbox" id="remoteToggle"/><span class="toggle-track"></span></label></div>
+    </div>
+   </aside>
+
+   <main>
+    <div class="jobs-header"><div class="jobs-count">Найдено: <strong id="jobCount">0</strong> вакансий</div></div>
+    <div id="jobsGrid" class="jobs-grid"></div>
+   </main>
+  </div>
+ </div>
+</div>
+
+<!-- Mobile Filter Drawer -->
+<div class="filter-overlay" id="filterOverlay"></div>
+<div class="filter-drawer" id="filterDrawer">
+ <div class="filter-drawer__header"><h3>Фильтры</h3><button class="drawer-close" id="drawerClose"><i class="ph ph-x"></i></button></div>
+ <div class="filter-section">
+  <div class="filter-label">Тип занятости</div>
+  <div class="filter-chips">
+   <button class="filter-chip active" data-type="all">Все</button>
+   <button class="filter-chip" data-type="parttime">Частичная</button>
+   <button class="filter-chip" data-type="oneday">Разовая</button>
+   <button class="filter-chip" data-type="weekend">Выходные</button>
+  </div>
+ </div>
+ <div class="filter-section" style="margin-top:20px">
+  <div class="toggle-row"><span class="toggle-label">Только удалённые</span><label class="toggle"><input type="checkbox"/><span class="toggle-track"></span></label></div>
+ </div>
+ <button class="btn btn--primary btn--full" style="margin-top:24px" onclick="document.getElementById('drawerClose').click()">Применить</button>
+ <button class="filter-clear" style="display:block;text-align:center;width:100%;margin-top:12px;font-size:0.9rem">Сбросить всё</button>
+</div>
+
+<!-- Bottom Nav -->
+<nav class="bottom-nav">
+ <div class="bottom-nav__inner">
+  <a href="jobs.html" class="bottom-nav-item active"><i class="ph ph-briefcase" style="font-size:24px;"></i><span>Вакансии</span></a>
+  <a href="jobs.html?saved=1" class="bottom-nav-item"><i class="ph ph-heart" style="font-size:24px;"></i><span>Избранное</span></a>
+  <a href="profile.html" class="bottom-nav-item"><i class="ph ph-user" style="font-size:24px;"></i><span>Профиль</span></a>
+ </div>
+</nav>
+
+<script src="js/app.js"></script><script src="js/jobs.js"></script>
+<script>
+ document.getElementById('burger').addEventListener('click',function(){document.getElementById('navLinks').classList.toggle('open');this.classList.toggle('active');});
+</script>
+</body></html>
+
+
