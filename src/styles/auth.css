@@ -1,0 +1,73 @@
+.auth-page{min-height:100vh;background:linear-gradient(135deg,#1A1A2E,#16213E,#0F3460);display:flex;align-items:center;justify-content:center;padding:20px;position:relative;overflow:hidden}
+.auth-page::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 30% 70%,rgba(244,130,39,0.15),transparent 60%),radial-gradient(ellipse at 70% 30%,rgba(41,133,141,0.12),transparent 50%)}
+.auth-container{display:grid;grid-template-columns:1fr 1fr;gap:0;background:white;border-radius:28px;overflow:hidden;box-shadow:0 40px 80px rgba(0,0,0,0.35),0 0 0 1px rgba(255,255,255,0.1);max-width:900px;width:100%;position:relative;z-index:1}
+.auth-left{background:linear-gradient(135deg,#F48227,#F35029);padding:52px 44px;display:flex;flex-direction:column;justify-content:center;color:white;position:relative;overflow:hidden}
+.auth-left::before{content:'';position:absolute;top:-40px;right:-40px;width:200px;height:200px;border-radius:50%;background:rgba(255,255,255,0.1)}
+.auth-left::after{content:'';position:absolute;bottom:-60px;left:-20px;width:260px;height:260px;border-radius:50%;background:rgba(0,0,0,0.08)}
+.auth-left__logo{position:relative;z-index:1}
+.auth-left__logo .logo-jumush{color:white;font-size:1.4rem}
+.auth-left__logo .logo-tap{color:rgba(255,255,255,0.7)}
+.auth-left__content{position:relative;z-index:1}
+.auth-left__content h2{font-size:1.8rem;font-weight:800;margin-bottom:16px}
+.auth-left__content p{color:rgba(255,255,255,0.82);font-size:0.95rem;line-height:1.6}
+.auth-left__perks{position:relative;z-index:1;display:flex;flex-direction:column;gap:12px;margin-top:32px}
+.perk{display:flex;align-items:center;gap:12px;background:rgba(255,255,255,0.15);border-radius:12px;padding:12px 16px;font-size:0.88rem;font-weight:500}
+.auth-right{padding:52px 44px;display:flex;flex-direction:column;justify-content:center}
+.auth-right h1{font-size:1.8rem;margin-bottom:8px;color:#1A1A2E}
+.auth-right .subtitle{color:#6B7280;margin-bottom:36px;font-size:0.95rem}
+.social-login{display:flex;gap:12px;margin-bottom:24px}
+.social-btn{flex:1;display:flex;align-items:center;justify-content:center;gap:8px;padding:12px;border:2px solid #E5E7EB;border-radius:10px;font-family:Outfit,sans-serif;font-size:0.88rem;font-weight:600;color:#1A1A2E;cursor:pointer;background:white;transition:all 0.2s}
+.social-btn:hover{border-color:#9CA3AF;background:#F4F6F8}
+.role-selector{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:28px}
+.role-card{border:2px solid #E5E7EB;border-radius:14px;padding:20px;text-align:center;cursor:pointer;transition:all 0.2s;background:white}
+.role-card:hover{border-color:#F48227}
+.role-card.selected{border-color:#F48227;background:rgba(244,130,39,0.05)}
+.role-card__icon{font-size:2rem;margin-bottom:10px}
+.role-card__title{font-size:0.9rem;font-weight:700;color:#1A1A2E;margin-bottom:4px}
+.role-card__desc{font-size:0.76rem;color:#6B7280}
+.auth-footer{margin-top:20px;text-align:center;font-size:0.88rem;color:#6B7280}
+.auth-footer a{color:#F48227;font-weight:600;text-decoration:none}
+.auth-footer a:hover{text-decoration:underline}
+.pw-toggle{position:absolute;right:14px;top:50%;transform:translateY(-50%);background:none;border:none;cursor:pointer;color:#9CA3AF;padding:4px;display:flex}
+.pw-toggle:hover{color:#F48227}
+.step-indicator{display:flex;gap:8px;justify-content:center;margin-bottom:32px}
+.step-dot{width:8px;height:8px;border-radius:50%;background:#E5E7EB;transition:all 0.3s}
+.step-dot.active{background:#F48227;width:24px;border-radius:4px}
+.mobile-close-btn{position:absolute;top:20px;right:20px;width:40px;height:40px;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,0.1);color:white;border-radius:50%;font-size:1.4rem;text-decoration:none;z-index:100;transition:all 0.2s;backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,0.1)}
+.mobile-close-btn:hover{background:rgba(255,255,255,0.2);transform:rotate(90deg)}
+
+@media(max-width:768px){
+  .auth-page {
+    padding: 16px;
+    align-items: flex-start;
+    padding-top: 80px;
+  }
+  
+  .auth-container {
+    grid-template-columns: 1fr;
+    max-width: 100%;
+    border-radius: 0;
+  }
+  
+  .auth-left {
+    padding: 32px 20px;
+    text-align: center;
+    min-height: auto;
+  }
+  
+  .auth-left__perks {
+    display: none;
+  }
+  
+  .auth-right {
+    padding: 32px 20px;
+  }
+  
+  .mobile-close-btn {
+    top: 20px;
+    right: 20px;
+    background: white;
+    color: #1A1A2E;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  }
+}

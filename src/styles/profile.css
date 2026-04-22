@@ -1,0 +1,337 @@
+.profile-page {
+  background: var(--bg);
+  min-height: 100vh;
+  padding-bottom: 60px;
+}
+
+.profile-layout {
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  gap: 24px;
+  align-items: start;
+  padding: 40px 20px;
+  margin-top: 72px;
+}
+
+.profile-sidebar {
+  position: sticky;
+  top: 100px;
+}
+
+.profile-card {
+  background: white;
+  border-radius: var(--radius-md);
+  padding: 24px;
+  text-align: center;
+  box-shadow: var(--shadow-sm);
+  margin-bottom: 20px;
+}
+
+.profile-card__avatar {
+  width: 80px;
+  height: 80px;
+  background: var(--primary);
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  font-weight: 800;
+  margin: 0 auto 16px;
+  overflow: hidden;
+}
+
+.profile-card__avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.profile-card__name {
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-bottom: 2px;
+  color: var(--text);
+}
+
+.profile-card__rating {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.profile-card__rating .stars {
+  display: flex;
+  gap: 2px;
+  color: #FFB800;
+  font-size: 0.9rem;
+}
+
+.profile-card__rating .rating-value {
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: var(--text);
+}
+
+.profile-card__rating .rating-count {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+}
+
+.profile-card__role {
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+  margin-bottom: 16px;
+}
+
+.profile-card__stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  padding-top: 16px;
+  border-top: 1px solid var(--border);
+}
+
+.profile-card__stats .stat {
+  display: flex;
+  flex-direction: column;
+}
+
+.profile-card__stats .stat span {
+  font-size: 0.7rem;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.profile-card__stats .stat strong {
+  font-size: 0.95rem;
+  color: var(--text);
+}
+
+.profile-nav {
+  background: white;
+  border-radius: var(--radius-md);
+  padding: 8px;
+  box-shadow: var(--shadow-sm);
+}
+
+.profile-nav__item {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  border: none;
+  background: none;
+  border-radius: var(--radius-sm);
+  color: var(--text-secondary);
+  font-family: var(--font);
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+  text-align: left;
+}
+
+.profile-nav__item i {
+  font-size: 1.2rem;
+}
+
+.profile-nav__item:hover {
+  background: var(--bg);
+  color: var(--text);
+}
+
+.profile-nav__item.active {
+  background: var(--primary-light);
+  color: var(--primary);
+  font-weight: 600;
+}
+
+.profile-section {
+  background: white;
+  border-radius: var(--radius-md);
+  padding: 24px;
+  box-shadow: var(--shadow-sm);
+  min-height: 400px;
+}
+
+.profile-section__header {
+  margin-bottom: 24px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--border);
+}
+
+.profile-section__header h3 {
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+/* Response Item */
+.response-item {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  margin-bottom: 12px;
+  transition: all 0.2s;
+}
+
+.response-item:hover {
+  border-color: var(--primary);
+  box-shadow: var(--shadow-sm);
+}
+
+.response-item__logo {
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg);
+  font-size: 1.2rem;
+}
+
+.response-item__info {
+  flex: 1;
+}
+
+.response-item__title {
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: var(--text);
+  margin-bottom: 2px;
+}
+
+.response-item__company {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+}
+
+.response-status {
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.response-status--pending { background: #fff7ed; color: #c2410c; }
+.response-status--accepted { background: #f0fdf4; color: #15803d; }
+.response-status--rejected { background: #fef2f2; color: #b91c1c; }
+
+@media (max-width: 992px) {
+  .profile-layout {
+    grid-template-columns: 1fr;
+    padding: 12px !important;
+    margin-top: 60px !important;
+    gap: 12px;
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+  
+  .profile-sidebar {
+    position: static;
+    width: 100%;
+  }
+  
+  .profile-nav {
+    display: flex;
+    overflow-x: auto;
+    padding: 4px;
+    gap: 4px;
+    scrollbar-width: none;
+    margin-bottom: 12px;
+    background: #EBEEF2;
+    border-radius: 12px;
+    width: 100%;
+  }
+  
+  .profile-nav::-webkit-scrollbar { display: none; }
+  
+  .profile-nav__item {
+    white-space: nowrap;
+    width: auto;
+    padding: 8px 14px;
+    flex-shrink: 0;
+    justify-content: center;
+    font-size: 0.8rem;
+    gap: 6px;
+    background: transparent;
+    border-radius: 8px;
+  }
+  
+  .profile-nav__item.active {
+    background: white;
+    color: var(--primary);
+    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+  }
+
+  .profile-content {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .profile-section {
+    padding: 16px;
+    border-radius: 12px;
+    min-height: auto;
+    width: 100%;
+  }
+}
+
+@media (max-width: 576px) {
+  .response-item {
+    padding: 12px;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  
+  .response-item__logo {
+    width: 36px;
+    height: 36px;
+    font-size: 1rem;
+  }
+
+  .response-item__info {
+    min-width: 0;
+    width: calc(100% - 50px);
+  }
+
+  .response-item__title {
+    font-size: 0.85rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .response-item__company {
+    font-size: 0.75rem;
+  }
+  
+  .response-status {
+    font-size: 0.65rem;
+    padding: 2px 8px;
+    margin-top: 4px;
+  }
+
+  .profile-card {
+    padding: 16px 12px;
+  }
+
+  .profile-card__name {
+    font-size: 1.1rem;
+  }
+
+  .profile-card__stats .stat strong {
+    font-size: 0.85rem;
+  }
+}
