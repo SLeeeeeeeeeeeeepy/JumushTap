@@ -21,7 +21,17 @@ export const AuthProvider = ({ children }) => {
     const u = users.find(x => x.email === email);
     if (!u) return { ok: false, msg: 'Пользователь не найден' };
     if (u.password !== btoa(password)) return { ok: false, msg: 'Неверный пароль' };
-    const safe = { id: u.id, name: u.name, email: u.email, role: u.role, avatar: u.avatar, city: u.city, skills: u.skills || [] };
+    const safe = { 
+      id: u.id, 
+      name: u.name, 
+      email: u.email, 
+      role: u.role, 
+      avatar: u.avatar, 
+      city: u.city, 
+      skills: u.skills || [],
+      rating: u.rating || 0,
+      reviewsCount: u.reviewsCount || 0
+    };
     localStorage.setItem('jt_user', JSON.stringify(safe));
     setUser(safe);
     return { ok: true, user: safe };
@@ -30,10 +40,27 @@ export const AuthProvider = ({ children }) => {
   const register = (data) => {
     let users = JSON.parse(localStorage.getItem('jt_users') || '[]');
     if (users.find(x => x.email === data.email)) return { ok: false, msg: 'Email уже используется' };
-    const u = { id: Date.now().toString(), ...data, password: btoa(data.password), avatar: data.avatar || '' };
+    const u = { 
+      id: Date.now().toString(), 
+      ...data, 
+      password: btoa(data.password), 
+      avatar: data.avatar || '',
+      rating: 0,
+      reviewsCount: 0
+    };
     users.push(u);
     localStorage.setItem('jt_users', JSON.stringify(users));
-    const safe = { id: u.id, name: u.name, email: u.email, role: u.role, avatar: u.avatar, city: u.city, skills: u.skills || [] };
+    const safe = { 
+      id: u.id, 
+      name: u.name, 
+      email: u.email, 
+      role: u.role, 
+      avatar: u.avatar, 
+      city: u.city, 
+      skills: u.skills || [],
+      rating: u.rating || 0,
+      reviewsCount: u.reviewsCount || 0
+    };
     localStorage.setItem('jt_user', JSON.stringify(safe));
     setUser(safe);
     return { ok: true, user: safe };

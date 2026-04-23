@@ -1,4 +1,4 @@
-﻿*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
   --primary:#F48227;--primary-dark:#d96a10;--primary-light:rgba(244,130,39,0.12);
   --secondary:#29858D;--secondary-dark:#1a6b73;--secondary-light:rgba(41,133,141,0.12);
@@ -128,4 +128,23 @@ a{text-decoration:none}
 
 
 @media(max-width:768px){ .navbar{padding:10px 0 !important;} .custom-logo{height:40px !important;} }
+
+.ph-star {
+  color: #F48227;
+}
+
+.ph-star.inactive {
+  color: #cbd5e1 !important;
+}
+
+.empty-state {
+  text-align: center;
+  padding: 40px 20px;
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  background: var(--bg);
+  border-radius: var(--radius-sm);
+  border: 2px dashed var(--border);
+}
+
 
